@@ -22,7 +22,7 @@ function Calculadora() {
     const [resultado, setResultado] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:3500/v1/calculadora/historial')
+        fetch('https://calculadora-back-peach.vercel.app/v1/calculadora/historial')
             .then(res => res.json())
             .then(data => setHistorial(data.historial))
             .catch(err => console.error('Error al cargar el historial:', err));
@@ -36,7 +36,7 @@ function Calculadora() {
             // Recolectar todas las variables
             const variables = { A: number1, B: number2, C: number3, D: number4, E: number5, F: number6 };
 
-            fetch('http://localhost:3500/v1/calculadora/calcularEcuacion', {
+            fetch('https://calculadora-back-peach.vercel.app/v1/calculadora/calcularEcuacion', {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ variables, equation: ecuacion }) // Enviar ecuación y variables
@@ -57,7 +57,7 @@ function Calculadora() {
 
             const endpoint = operacion === "Ascendente" ? "ordenarAsc" : "ordenarDesc";
 
-            fetch(`http://localhost:3500/v1/calculadora/${endpoint}`, {
+            fetch(`https://calculadora-back-peach.vercel.app/v1/calculadora/${endpoint}`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ variables: selectedNumbers })
